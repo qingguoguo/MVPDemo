@@ -7,12 +7,5 @@ package qingguoguo.com.mvpdemo.mvp_primary;
  */
 
 public interface LoginView {
-
-    void login();
-
-    String getUserName();
-
-    String getPassword();
-
-    void showFailedError();
+    void onLoginResult(String result);
 }

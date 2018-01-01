@@ -1,4 +1,4 @@
-package qingguoguo.com.mvpdemo.mvp_primary;
+package qingguoguo.com.mvpdemo.HttpClient;
 
 import qingguoguo.com.mvpdemo.mvp_primary.bean.User;
 
@@ -8,9 +8,8 @@ import qingguoguo.com.mvpdemo.mvp_primary.bean.User;
  * 描述:
  */
 
-public class LoginNet implements HttpNet {
-    @Override
-    public void login(final String username, final String password, final OnLoginListener loginListener) {
+public class LoginNet {
+    public void login(final String username, final String password, final OnHttpListener loginListener) {
         new Thread() {
             @Override
             public void run() {
@@ -19,13 +18,13 @@ public class LoginNet implements HttpNet {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if ("qingguo".equals(username) && "123456".equals(password)) {
+                if ("qingguoguo".equals(username) && "123456".equals(password)) {
                     User user = new User();
                     user.setUsername(username);
                     user.setPassword(password);
-                    loginListener.loginSuccess(user);
+                    loginListener.onSuccess("登录成功");
                 } else {
-                    loginListener.loginFailed();
+                    loginListener.onFailed("登录成功");
                 }
             }
         }.start();
