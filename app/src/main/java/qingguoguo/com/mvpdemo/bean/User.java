@@ -1,4 +1,4 @@
-package qingguoguo.com.mvpdemo.mvp_primary.bean;
+package qingguoguo.com.mvpdemo.bean;
 
 /**
  * 作者:王青 admin

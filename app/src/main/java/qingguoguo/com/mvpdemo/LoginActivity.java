@@ -9,7 +9,7 @@ import qingguoguo.com.mvpdemo.mvp_primary.LoginPresenter;
 
 /**
  * MVP 模式是从MVC演变而来
- * *
+ *
  * P 主持人,持有M V引用
  */
 

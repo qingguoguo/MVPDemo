@@ -1,0 +1,11 @@
+package qingguoguo.com.mvpdemo.mvp_middle;
+
+/**
+ * 作者:王青 admin
+ * 创建日期：2018/1/2 on 22:07
+ * 描述:
+ */
+
+public interface BaseView {
+
+}

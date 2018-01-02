@@ -1,6 +1,6 @@
 package qingguoguo.com.mvpdemo.HttpClient;
 
-import qingguoguo.com.mvpdemo.mvp_primary.bean.User;
+import qingguoguo.com.mvpdemo.bean.User;
 
 /**
  * 作者:王青 admin
