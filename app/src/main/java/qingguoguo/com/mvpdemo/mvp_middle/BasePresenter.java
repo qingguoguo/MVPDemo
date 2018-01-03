@@ -8,5 +8,4 @@ package qingguoguo.com.mvpdemo.mvp_middle;
 
 public class BasePresenter {
 
-
 }
