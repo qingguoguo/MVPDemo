@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import qingguoguo.com.mvpdemo.mvp_base.MvpPresenter;
+import qingguoguo.com.mvpdemo.mvp_base.MvpView;
+
 /**
  * 作者:qingguoguo
  * 创建日期：2018/1/7 on 15:56
@@ -17,7 +20,7 @@ public abstract class MvpActivity<V extends MvpView, P extends MvpPresenter<V>> 
 
     public abstract P createPresenter();
 
-    public P getPresenter() {
+    public P getMvpPersenter() {
         return presenter;
     }
 

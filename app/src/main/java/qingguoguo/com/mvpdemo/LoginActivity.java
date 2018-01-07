@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Toast;
 import qingguoguo.com.mvpdemo.mvp_middle.LoginPresenter;
 import qingguoguo.com.mvpdemo.mvp_middle.LoginView;
-import qingguoguo.com.mvpdemo.mvp_middle.MvpActivity;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.MvpActivity;
 
 /**
  * MVP 模式是从MVC演变而来
@@ -26,7 +26,7 @@ public class LoginActivity extends MvpActivity<LoginView,LoginPresenter> impleme
     }
 
     public void onlogin(View view) {
-        getPresenter().login("qingguoguo", "123456");
+        getMvpPersenter().login("qingguoguo", "123456");
     }
 
     @Override

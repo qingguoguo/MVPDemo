@@ -1,4 +1,4 @@
-package qingguoguo.com.mvpdemo.mvp_middle;
+package qingguoguo.com.mvpdemo.mvp_base;
 
 /**
  * 作者:qingguoguo

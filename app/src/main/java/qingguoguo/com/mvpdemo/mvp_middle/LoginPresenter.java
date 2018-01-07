@@ -2,6 +2,7 @@ package qingguoguo.com.mvpdemo.mvp_middle;
 
 import qingguoguo.com.mvpdemo.HttpClient.OnHttpListener;
 import qingguoguo.com.mvpdemo.LoginModel;
+import qingguoguo.com.mvpdemo.mvp_base.MvpBasePresenter;
 
 
 /**
