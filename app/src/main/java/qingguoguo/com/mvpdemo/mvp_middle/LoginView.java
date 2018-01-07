@@ -1,4 +1,4 @@
-package qingguoguo.com.mvpdemo.mvp_primary;
+package qingguoguo.com.mvpdemo.mvp_middle;
 
 /**
  * 作者:qingguoguo
@@ -6,6 +6,6 @@ package qingguoguo.com.mvpdemo.mvp_primary;
  * 描述:
  */
 
-public interface LoginView {
+public interface LoginView extends MvpView {
     void onLoginResult(String result);
 }

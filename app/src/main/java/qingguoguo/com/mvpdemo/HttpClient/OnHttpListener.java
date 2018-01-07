@@ -1,8 +1,8 @@
 package qingguoguo.com.mvpdemo.HttpClient;
 
 /**
- * 作者:王青 admin
- * 创建日期：2017/12/29 on 1:13
+ * 作者:qingguoguo
+ * 创建日期：2018/1/7 on 15:56
  * 描述:
  */
 
