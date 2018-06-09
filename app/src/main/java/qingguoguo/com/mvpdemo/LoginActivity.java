@@ -40,9 +40,4 @@ public class LoginActivity extends AbsMvpActivity<LoginView,LoginPresenter> impl
             }
         });
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }

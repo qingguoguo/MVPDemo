@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package qingguoguo.com.mvpdemo.mvp_double_proxy;
+package qingguoguo.com.mvpdemo.mvp;
 
 import android.support.annotation.Nullable;
 
@@ -27,13 +27,13 @@ import java.lang.reflect.WildcardType;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-final class Utils {
+public final class Utils {
 
     private Utils() {
         // No instances.
     }
 
-    static <T> T checkNotNull(@Nullable T object, String message) {
+    public static <T> T checkNotNull(@Nullable T object, String message) {
         if (object == null) {
             throw new NullPointerException(message);
         }

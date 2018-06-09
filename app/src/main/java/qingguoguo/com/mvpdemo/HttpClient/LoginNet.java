@@ -14,17 +14,17 @@ public class LoginNet {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if ("qingguoguo".equals(username) && "123456".equals(password)) {
+                if ("123456".equals(username) && "123456".equals(password)) {
                     User user = new User();
                     user.setUsername(username);
                     user.setPassword(password);
                     loginListener.onSuccess("登录成功");
                 } else {
-                    loginListener.onFailed("登录成功");
+                    loginListener.onFailed("登录失败");
                 }
             }
         }.start();
