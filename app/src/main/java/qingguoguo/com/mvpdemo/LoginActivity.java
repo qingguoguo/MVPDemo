@@ -3,16 +3,18 @@ package qingguoguo.com.mvpdemo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import qingguoguo.com.mvpdemo.mvp_middle.LoginPresenter;
-import qingguoguo.com.mvpdemo.mvp_middle.LoginView;
-import qingguoguo.com.mvpdemo.mvp_double_proxy.MvpActivity;
+
+import qingguoguo.com.mvpdemo.mvp_double_proxy.AbsMvpActivity;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.test.LoginPresenter;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.test.LoginView;
+
 
 /**
  * MVP 模式是从MVC演变而来
  * P 主持人,持有M V引用
  */
 
-public class LoginActivity extends MvpActivity<LoginView,LoginPresenter> implements LoginView {
+public class LoginActivity extends AbsMvpActivity<LoginView,LoginPresenter> implements LoginView {
 
     @Override
     public LoginPresenter createPresenter() {
@@ -25,8 +27,8 @@ public class LoginActivity extends MvpActivity<LoginView,LoginPresenter> impleme
         setContentView(R.layout.activity_main);
     }
 
-    public void onlogin(View view) {
-        getMvpPersenter().login("qingguoguo", "123456");
+    public void onLogin(View view) {
+        getMvpPresenter().login("qingguoguo", "123456");
     }
 
     @Override
@@ -37,5 +39,10 @@ public class LoginActivity extends MvpActivity<LoginView,LoginPresenter> impleme
                 Toast.makeText(LoginActivity.this, result, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

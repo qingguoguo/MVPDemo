@@ -1,7 +1,7 @@
 package qingguoguo.com.mvpdemo.mvp_double_proxy;
 
-import qingguoguo.com.mvpdemo.mvp_base.MvpPresenter;
-import qingguoguo.com.mvpdemo.mvp_base.MvpView;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.base.AbsMvpPresenter;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.base.IMvpView;
 
 /**
  * 作者:qingguoguo
@@ -9,7 +9,7 @@ import qingguoguo.com.mvpdemo.mvp_base.MvpView;
  * 描述:
  */
 
-public class ProxyMvpCallBack<V extends MvpView, P extends MvpPresenter<V>> implements MvpCallBack<V, P> {
+public class ProxyMvpCallBack<V extends IMvpView, P extends AbsMvpPresenter<V>> implements MvpCallBack<V, P> {
 
     private MvpCallBack<V, P> mVPMvpCallBack;
 
@@ -19,7 +19,7 @@ public class ProxyMvpCallBack<V extends MvpView, P extends MvpPresenter<V>> impl
 
     @Override
     public P createPresenter() {
-        P presenter = mVPMvpCallBack.getMvpPersenter();
+        P presenter = mVPMvpCallBack.getMvpPresenter();
         if (presenter == null) {
             presenter = this.mVPMvpCallBack.createPresenter();
         }
@@ -27,17 +27,17 @@ public class ProxyMvpCallBack<V extends MvpView, P extends MvpPresenter<V>> impl
         if (presenter == null) {
             throw new NullPointerException("presenter 不能为空");
         }
-        mVPMvpCallBack.setMvpPersenter(presenter);
+        mVPMvpCallBack.setMvpPresenter(presenter);
         return presenter;
     }
 
     @Override
-    public P getMvpPersenter() {
-        return mVPMvpCallBack.getMvpPersenter();
+    public P getMvpPresenter() {
+        return mVPMvpCallBack.getMvpPresenter();
     }
 
     @Override
-    public void setMvpPersenter(P presenter) {
+    public void setMvpPresenter(P presenter) {
 
     }
 
@@ -59,10 +59,10 @@ public class ProxyMvpCallBack<V extends MvpView, P extends MvpPresenter<V>> impl
     }
 
     public void attachView() {
-        getMvpPersenter().attachView(getMvpView());
+        getMvpPresenter().attachView(getMvpView());
     }
 
-    public void detachview() {
-        getMvpPersenter().detachView();
+    public void detachView() {
+        getMvpPresenter().detachView();
     }
 }

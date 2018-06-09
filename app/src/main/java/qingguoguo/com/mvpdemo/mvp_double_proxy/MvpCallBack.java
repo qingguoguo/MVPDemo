@@ -1,7 +1,7 @@
 package qingguoguo.com.mvpdemo.mvp_double_proxy;
 
-import qingguoguo.com.mvpdemo.mvp_base.MvpPresenter;
-import qingguoguo.com.mvpdemo.mvp_base.MvpView;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.base.AbsMvpPresenter;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.base.IMvpView;
 
 /**
  * 作者:qingguoguo
@@ -9,15 +9,15 @@ import qingguoguo.com.mvpdemo.mvp_base.MvpView;
  * 描述:
  */
 
-public interface MvpCallBack<V extends MvpView, P extends MvpPresenter<V>> {
+public interface MvpCallBack<V extends IMvpView, P extends AbsMvpPresenter<V>> {
 
     P createPresenter();
 
-    P getMvpPersenter();
+    P getMvpPresenter();
 
     V createView();
 
     V getMvpView();
 
-    void setMvpPersenter(P presenter);
+    void setMvpPresenter(P presenter);
 }

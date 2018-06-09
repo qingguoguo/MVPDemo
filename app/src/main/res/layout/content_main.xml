@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:onClick="onlogin"
+        android:onClick="onLogin"
         android:text="登录"/>
 
 </LinearLayout>

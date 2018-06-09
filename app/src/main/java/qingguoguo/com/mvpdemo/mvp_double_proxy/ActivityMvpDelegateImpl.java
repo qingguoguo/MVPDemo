@@ -2,8 +2,9 @@ package qingguoguo.com.mvpdemo.mvp_double_proxy;
 
 import android.os.Bundle;
 
-import qingguoguo.com.mvpdemo.mvp_base.MvpPresenter;
-import qingguoguo.com.mvpdemo.mvp_base.MvpView;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.base.AbsMvpPresenter;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.base.IMvpView;
+
 
 /**
  * 作者:qingguoguo
@@ -11,10 +12,11 @@ import qingguoguo.com.mvpdemo.mvp_base.MvpView;
  * 描述:
  */
 
-public class ActivityMvpDelegatelmpl<V extends MvpView, P extends MvpPresenter<V>> implements ActivityMvpDelegate {
+public class ActivityMvpDelegateImpl<V extends IMvpView, P extends AbsMvpPresenter<V>> implements ActivityMvpDelegate {
+
     private ProxyMvpCallBack<V, P> mVPProxyMvpCallBack;
 
-    public ActivityMvpDelegatelmpl(MvpCallBack<V, P> mvpCallBack) {
+    public ActivityMvpDelegateImpl(MvpCallBack<V, P> mvpCallBack) {
         mVPProxyMvpCallBack = new ProxyMvpCallBack<>(mvpCallBack);
     }
 
@@ -51,7 +53,7 @@ public class ActivityMvpDelegatelmpl<V extends MvpView, P extends MvpPresenter<V
     }
 
     @Override
-    public void onDestory() {
-        mVPProxyMvpCallBack.detachview();
+    public void onDestroy() {
+        mVPProxyMvpCallBack.detachView();
     }
 }

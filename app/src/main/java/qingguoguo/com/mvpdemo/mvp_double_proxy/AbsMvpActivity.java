@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import qingguoguo.com.mvpdemo.mvp_base.MvpPresenter;
-import qingguoguo.com.mvpdemo.mvp_base.MvpView;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.base.AbsMvpPresenter;
+import qingguoguo.com.mvpdemo.mvp_double_proxy.base.IMvpView;
 
 /**
  * 作者:qingguoguo
@@ -13,14 +13,14 @@ import qingguoguo.com.mvpdemo.mvp_base.MvpView;
  * 描述:
  */
 
-public abstract class MvpActivity<V extends MvpView, P extends MvpPresenter<V>> extends AppCompatActivity implements MvpCallBack<V, P>, MvpView {
+public abstract class AbsMvpActivity<V extends IMvpView, P extends AbsMvpPresenter<V>> extends AppCompatActivity implements MvpCallBack<V, P> {
 
     private ActivityMvpDelegate<V, P> mMvpDelegate;
     private P mPresenter;
 
     public ActivityMvpDelegate<V, P> getMvpDelegate() {
         if (mMvpDelegate == null) {
-            mMvpDelegate = new ActivityMvpDelegatelmpl<V, P>(this);
+            mMvpDelegate = new ActivityMvpDelegateImpl<V, P>(this);
         }
         return mMvpDelegate;
     }
@@ -36,7 +36,7 @@ public abstract class MvpActivity<V extends MvpView, P extends MvpPresenter<V>> 
     }
 
     @Override
-    public P getMvpPersenter() {
+    public P getMvpPresenter() {
         return mPresenter;
     }
 
@@ -46,7 +46,7 @@ public abstract class MvpActivity<V extends MvpView, P extends MvpPresenter<V>> 
     }
 
     @Override
-    public void setMvpPersenter(P presenter) {
+    public void setMvpPresenter(P presenter) {
         mPresenter = presenter;
     }
 
@@ -89,6 +89,6 @@ public abstract class MvpActivity<V extends MvpView, P extends MvpPresenter<V>> 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        getMvpDelegate().onDestory();
+        getMvpDelegate().onDestroy();
     }
 }
