@@ -6,7 +6,7 @@ import qingguoguo.com.mvpdemo.mvp_double_proxy.base.IMvpView;
 /**
  * 作者:qingguoguo
  * 创建日期：2018/1/7 on 23:05
- * 描述:
+ * 描述:双重代理实现MVP模式
  */
 
 public class ProxyMvpCallBack<V extends IMvpView, P extends AbsMvpPresenter<V>> implements MvpCallBack<V, P> {

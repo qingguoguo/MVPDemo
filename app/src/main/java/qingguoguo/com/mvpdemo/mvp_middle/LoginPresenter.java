@@ -8,7 +8,7 @@ import qingguoguo.com.mvpdemo.mvp_base.MvpBasePresenter;
 /**
  * 作者:qingguoguo
  * 创建日期：2018/1/7 on 15:56
- * 描述:
+ * 描述:泛型实现MVP模式
  */
 
 public class LoginPresenter extends MvpBasePresenter<LoginView> {
