@@ -14,12 +14,16 @@ import qingguoguo.com.mvpdemo.mvp.Utils;
  * 描述:
  * 1.动态创建的 model 的对象
  * 2.动态代理，避免每次都要判断 View==null 也可以不用动态代理
+ * 3.P层 代码可以越来越复杂，静态代理抽离 Fragment Activity
  */
 
 public class BaseMvpPresenter<V extends BaseMvpView, M extends BaseModel> implements IMvpPresenter<V> {
 
     private V mView;
     private M mModel;
+    /**
+     * 动态代理 View
+     */
     private V mProxyView;
 
     public V getView() {
@@ -34,6 +38,9 @@ public class BaseMvpPresenter<V extends BaseMvpView, M extends BaseModel> implem
     @Override
     public void attachView(V view) {
         Utils.checkNotNull(view, "view 不能为 null");
+        if (view.getClass().isInterface()) {
+            throw new RuntimeException("view 不能是 interface");
+        }
         this.mView = view;
         mProxyView = initProxyView();
         initModel();
