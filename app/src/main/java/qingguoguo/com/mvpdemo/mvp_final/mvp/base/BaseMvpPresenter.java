@@ -41,8 +41,10 @@ public class BaseMvpPresenter<V extends BaseMvpView, M extends BaseModel> implem
         if (view.getClass().isInterface()) {
             throw new RuntimeException("view 不能是 interface");
         }
+        // 检查 View 层是否实现了 BaseMvpPresenter 的 View 接口
+        checkIsImplementsView();
         this.mView = view;
-        mProxyView = initProxyView();
+        this.mProxyView = initProxyView();
         initModel();
     }
 
@@ -74,6 +76,34 @@ public class BaseMvpPresenter<V extends BaseMvpView, M extends BaseModel> implem
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 检查 View 层是否实现了 BasePresenter 的 View 接口
+     */
+    private void checkIsImplementsView() {
+        Type[] params = ((ParameterizedType) this.getClass()
+                .getGenericSuperclass()).getActualTypeArguments();
+        // 获取 Presenter 上的第一个泛型 V  要判断 mView 是否 implements View
+        if (params.length != 2) {
+            throw new RuntimeException("Presenter 必须带两个泛型参数");
+        }
+        Class viewClass = (Class) params[0];
+        Class<?>[] viewInterfaces = mView.getClass().getInterfaces();
+
+        boolean isImplementsView = false;
+        if (viewInterfaces != null) {
+            for (Class<?> interfaceClass : viewInterfaces) {
+                if (interfaceClass.isAssignableFrom(viewClass)) {
+                    isImplementsView = true;
+                }
+            }
+        }
+
+        if (!isImplementsView) {
+            throw new RuntimeException(mView.getClass().getSimpleName() +
+                    " must implements " + viewClass.getName());
         }
     }
 

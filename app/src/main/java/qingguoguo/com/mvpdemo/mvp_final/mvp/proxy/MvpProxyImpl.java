@@ -1,8 +1,6 @@
 package qingguoguo.com.mvpdemo.mvp_final.mvp.proxy;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +45,6 @@ public class MvpProxyImpl<V extends BaseMvpView> implements IMvpProxy {
                     field.setAccessible(true);
                     field.set(this.mView, presenter);
                     presenter.attachView(mView);
-                    checkIsImplementsView(presenter);
                     mBasePresenters.add(presenter);
 
                 } catch (InstantiationException e) {
@@ -56,36 +53,6 @@ public class MvpProxyImpl<V extends BaseMvpView> implements IMvpProxy {
                     e.printStackTrace();
                 }
             }
-        }
-    }
-
-    /**
-     * 检查是否实现了 View
-     *
-     * @param presenter
-     */
-    private void checkIsImplementsView(BaseMvpPresenter presenter) {
-        Type[] params = ((ParameterizedType) presenter.getClass()
-                .getGenericSuperclass()).getActualTypeArguments();
-        // 获取 Presenter 上的第一个泛型 V  要判断 mView 是否 implements View
-        if (params.length != 2) {
-            throw new RuntimeException("Presenter 必须带两个泛型参数");
-        }
-        Class viewClass = (Class) params[0];
-        Class<?>[] viewInterfaces = mView.getClass().getInterfaces();
-
-        boolean isImplementsView = false;
-        if (viewInterfaces != null) {
-            for (Class<?> interfaceClass : viewInterfaces) {
-                if (interfaceClass.isAssignableFrom(viewClass)) {
-                    isImplementsView = true;
-                }
-            }
-        }
-
-        if (!isImplementsView) {
-            throw new RuntimeException(mView.getClass().getName() +
-                    "must implements " + viewClass.getSimpleName());
         }
     }
 
