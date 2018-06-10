@@ -32,15 +32,19 @@ public abstract class BaseMvpActivity<V extends BaseMvpView, P extends BaseMvpPr
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView();
+        createAndAttachView();
         initView();
         initData();
-        createAndAttachView();
     }
 
     private void createAndAttachView() {
         mBasePresenters = new ArrayList<>();
         mPresenter = createPresenter();
+
+        // 保留该方法是为了方便只有一个P的情况
         Utils.checkNotNull(mPresenter, "mPresenter 不能为 null");
+        mPresenter.attachView(this);
+
 
         // @InjectPresenter
         // LoginPresenter mLoginPresenter
@@ -68,12 +72,21 @@ public abstract class BaseMvpActivity<V extends BaseMvpView, P extends BaseMvpPr
         }
     }
 
+    /**
+     * 允许子类空实现 createPresenter 方法
+     * 保留该方法是为了方便只有一个P的情况
+     *
+     * @return
+     */
     protected abstract P createPresenter();
 
     protected abstract void initView();
 
     protected abstract void initData();
 
+    /**
+     * 子类调用 setContentView 方法
+     */
     protected abstract void setContentView();
 
 
@@ -85,7 +98,9 @@ public abstract class BaseMvpActivity<V extends BaseMvpView, P extends BaseMvpPr
                 presenter.detachView();
             }
         }
-        mPresenter.detachView();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
         super.onDestroy();
     }
 }
