@@ -1,4 +1,4 @@
-package qingguoguo.com.mvpdemo.mvp;
+package qingguoguo.com.mvpdemo.mvp.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,8 +8,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import qingguoguo.com.mvpdemo.mvp.base.BaseMvpPresenter;
-import qingguoguo.com.mvpdemo.mvp.base.BaseMvpView;
+import qingguoguo.com.mvpdemo.mvp.InjectPresenter;
+import qingguoguo.com.mvpdemo.mvp.Utils;
 
 /**
  * 作者:qingguoguo
@@ -19,7 +19,7 @@ import qingguoguo.com.mvpdemo.mvp.base.BaseMvpView;
  * 2.通过注解解决多个 Presenter，泛型保留，方便只有一个 Presenter 的情况
  */
 
-public abstract class AbsMvpActivity<V extends BaseMvpView, P extends BaseMvpPresenter> extends AppCompatActivity implements BaseMvpView {
+public abstract class BaseMvpActivity<V extends BaseMvpView, P extends BaseMvpPresenter> extends AppCompatActivity implements BaseMvpView {
 
     private P mPresenter;
     private List<BaseMvpPresenter> mBasePresenters;
@@ -81,8 +81,8 @@ public abstract class AbsMvpActivity<V extends BaseMvpView, P extends BaseMvpPre
     protected void onDestroy() {
         // 解绑
         if (mBasePresenters != null) {
-            for (BaseMvpPresenter basePresenter : mBasePresenters) {
-                basePresenter.detachView();
+            for (BaseMvpPresenter presenter : mBasePresenters) {
+                presenter.detachView();
             }
         }
         mPresenter.detachView();

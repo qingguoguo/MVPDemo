@@ -4,11 +4,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import qingguoguo.com.mvpdemo.R;
-import qingguoguo.com.mvpdemo.mvp.AbsMvpActivity;
+import qingguoguo.com.mvpdemo.mvp.base.BaseMvpActivity;
 import qingguoguo.com.mvpdemo.mvp.InjectPresenter;
 
 
-public class LoginActivity extends AbsMvpActivity<LoginView, LoginPresenter> implements LoginView {
+public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> implements LoginView {
 
     @InjectPresenter
     LoginPresenter mLoginPresenter;
