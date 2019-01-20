@@ -72,7 +72,7 @@ findbugs {
 task findbugs(type: FindBugs, group: 'verification') {
     description 'Run findbugs'
     //检测二进制文件路径
-    classes = files("${project.rootDir}/${project.getName()}/build/intermediates/classes")
+    classes = files("${project.rootDir}/${project.getName()}/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes")
     source 'src'
     //匹配检测的文件名
     include '**/*.java'
