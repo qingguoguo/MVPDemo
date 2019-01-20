@@ -29,4 +29,51 @@ dependencies {
 }
 
 //apply from: "${rootDir}/codequalityconfig/pmd/pmd.gradle"
-apply from: "${rootDir}/codequalityconfig/quality.gradle"
+//apply from: "${rootDir}/codequalityconfig/quality.gradle"
+apply plugin: 'findbugs'
+
+//task findbugs(type: FindBugs,dependsOn:'assembleDebug') {
+//    ignoreFailures= true
+//    effort= "default"
+//    reportLevel= "high"
+//    println( "$project.buildDir")
+//    classes = files("$project.buildDir/intermediates/classes")
+//    source= fileTree("src/main/java/")
+//    classpath= files()
+//    reports{
+//        xml.enabled=false
+//        html.enabled=true
+//        xml {
+//            destination "$project.buildDir/findbugs.xml"
+//        }
+//        html{
+//            destination "$project.buildDir/findbugs.html"
+//        }
+//    }
+//}
+
+task findbugs(type: FindBugs) {
+    ignoreFailures = true
+    excludeFilter = new File("${project.rootDir}/codequalityconfig/findbugs/findbugs-filter.xml")
+    effort = "max"
+    reportLevel = "high"
+    classes = files("$project.buildDir/intermediates/classes")
+
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        xml {
+            destination "$project.buildDir/reports/findbugs/findbugs.xml"
+            xml.withMessages true
+        }
+        html {
+            destination "$project.buildDir/reports/findbugs/findbugs.html"
+        }
+    }
+    classpath = files()
+}
+
