@@ -8,7 +8,7 @@ def reportsDir = "${project.buildDir}/reports"
 check.dependsOn 'pmd'
 
 task pmd(type: Pmd, dependsOn: "assembleDebug") {
-  ignoreFailures = false
+  ignoreFailures = true
   ruleSetFiles = files("$configDir/pmd/pmd-ruleset.xml")
   ruleSets = []
 
