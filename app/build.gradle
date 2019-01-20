@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'pmd'
 
 android {
     compileSdkVersion 26
@@ -29,4 +28,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
 
-apply from: "${rootDir}/config/pmd/codequality-pmd.gradle"
+//apply from: "${rootDir}/codequalityconfig/pmd/pmd.gradle"
+apply from: "${rootDir}/codequalityconfig/quality.gradle"

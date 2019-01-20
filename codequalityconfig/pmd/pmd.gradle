@@ -1,6 +1,6 @@
 apply plugin: 'pmd'
 
-def configDir = "${project.rootDir}/config"
+def configDir = "${project.rootDir}/codequalityconfig"
 def reportsDir = "${project.buildDir}/reports"
 
 
@@ -8,9 +8,9 @@ def reportsDir = "${project.buildDir}/reports"
 check.dependsOn 'pmd'
 
 task pmd(type: Pmd, dependsOn: "assembleDebug") {
-  ignoreFailures = false
+  ignoreFailures = true
   ruleSetFiles = files("$configDir/pmd/pmd-ruleset.xml")
-  ruleSets = []
+  ruleSets = ["java-android"]
 
   source 'src/main/java'
   include '**/*.java'
