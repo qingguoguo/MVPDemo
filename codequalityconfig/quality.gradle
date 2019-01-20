@@ -32,7 +32,6 @@ checkstyle {
 }
 
 task checkstyle(type: Checkstyle) {
-
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'
@@ -64,8 +63,6 @@ task findbugs(type: FindBugs, dependsOn: "assembleDebug") {
             destination file("$reportsDir/findbugs/findbugs.html")
         }
     }
-
-    classpath = files()
 }
 
 task pmd(type: Pmd) {
@@ -79,7 +76,7 @@ task pmd(type: Pmd) {
 
     reports {
         xml.enabled = true
-        html.enabled = true
+        html.enabled = false
         xml {
             destination file("$reportsDir/pmd/pmd.xml")
         }
