@@ -32,63 +32,63 @@ dependencies {
 //apply from: "${rootDir}/codequalityconfig/quality.gradle"
 apply plugin: 'findbugs'
 
-//task findbugs(type: FindBugs,dependsOn:'compileDebugSources') {
-//    ignoreFailures = true
-//    effort = "default"
-//    reportLevel = "high"
-//    println("$project.buildDir")
-//    classes = files("$project.buildDir/intermediates/classes")
-//    //print("$project.buildDir********")
-//    source = fileTree("src/main/java/")
-//    classpath = files()
-//    reports {
-//        xml.enabled = false
-//        html.enabled = true
-//        xml {
-//            destination "$project.buildDir/findbugs.xml"
-//        }
-//        html {
-//            destination "$project.buildDir/findbugs.html"
-//        }
-//    }
-//}
-
-findbugs {
-    // https://github.com/ribot/ribot-app-android/issues/17
-    // https://chaichuanfa.github.io/2018/01/09/quality/
-    // https://segmentfault.com/a/1190000015373074
-    // https://developer.android.com/studio/build/#build-process
-    //工具版本
-    toolVersion = "3.0.1"
-    //忽略失败，如果检测到bug，task会执行失败，这里设置true会让task继续执行
-    ignoreFailures = false
-    //分析等级：min  default   max
-    effort = "max"
-    //检测bug的等级：low   medium  high，等级越高检测越严格
+task findbugs(type: FindBugs, dependsOn: 'assembleDebug') {
+    ignoreFailures = true
+    effort = "default"
     reportLevel = "high"
-    //exclude Filter路径
-    excludeFilter file("${project.rootDir}/codequalityconfig/findbugs/findbugs-filter.xml")
-}
-task findbugs(type: FindBugs, group: 'verification') {
-    description 'Run findbugs'
-    //检测二进制文件路径
-    classes = files("${project.rootDir}/${project.getName()}/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes")
-    source 'src'
-    //匹配检测的文件名
-    include '**/*.java'
-    exclude '**/gen/**'
+    println("$project.buildDir")
+    classes = files("$project.buildDir/intermediates")
+    //print("$project.buildDir********")
+    source = fileTree("src/main/java/")
+    classpath = files()
     reports {
         xml.enabled = false
         html.enabled = true
-        //配置检查报告输出路径
         xml {
-            destination "${project.rootDir}/${project.getName()}/build/reports/findbugs/findbugs.xml"
+            destination "$project.buildDir/findbugs.xml"
         }
         html {
-            destination "${project.rootDir}/${project.getName()}/build/reports/findbugs/findbugs.html"
+            destination "$project.buildDir/findbugs.html"
         }
     }
-    classpath = files()
 }
+
+//findbugs {
+//    // https://github.com/ribot/ribot-app-android/issues/17
+//    // https://chaichuanfa.github.io/2018/01/09/quality/
+//    // https://segmentfault.com/a/1190000015373074
+//    // https://developer.android.com/studio/build/#build-process
+//    //工具版本
+//    toolVersion = "3.0.1"
+//    //忽略失败，如果检测到bug，task会执行失败，这里设置true会让task继续执行
+//    ignoreFailures = false
+//    //分析等级：min  default   max
+//    effort = "max"
+//    //检测bug的等级：low   medium  high，等级越高检测越严格
+//    reportLevel = "high"
+//    //exclude Filter路径
+//    excludeFilter file("${project.rootDir}/codequalityconfig/findbugs/findbugs-filter.xml")
+//}
+//task findbugs(type: FindBugs, group: 'verification') {
+//    description 'Run findbugs'
+//    //检测二进制文件路径
+//    classes = files("${project.rootDir}/${project.getName()}/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes")
+//    source 'src'
+//    //匹配检测的文件名
+//    include '**/*.java'
+//    exclude '**/gen/**'
+//    reports {
+//        xml.enabled = false
+//        html.enabled = true
+//        //配置检查报告输出路径
+//        xml {
+//            destination "${project.rootDir}/${project.getName()}/build/reports/findbugs/findbugs.xml"
+//        }
+//        html {
+//            destination "${project.rootDir}/${project.getName()}/build/reports/findbugs/findbugs.html"
+//        }
+//    }
+//    classpath = files()
+//}
 
 

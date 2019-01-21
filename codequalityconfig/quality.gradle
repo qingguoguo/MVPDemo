@@ -92,7 +92,7 @@ task pmd(type: Pmd) {
 
 android {
     lintOptions {
-        abortOnError true
+        abortOnError false
         xmlReport true
         htmlReport true
         lintConfig file("$configDir/lint/lint.xml")
